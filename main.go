@@ -59,7 +59,16 @@ func do(context *cli.Context) error {
 	}
 
 	outfmt := context.String(OutFmtFlag.Names()[0])
-	fmt.Println(t.Format(dfmt.ConvertFormat(outfmt)))
+	switch outfmt {
+	case "unix":
+		fmt.Println(t.Unix())
+
+	case "unix.nano":
+		fmt.Println(t.UnixNano())
+
+	default:
+		fmt.Println(t.Format(dfmt.ConvertFormat(outfmt)))
+	}
 
 	return nil
 }
