@@ -41,20 +41,24 @@ func main() {
 
 func do(context *cli.Context) error {
 	src := context.Args().First()
-	if len(src) < 1 {
-		return cli.Exit(errors.New("a valid date/time must be provided"), 1)
-	}
-
 	infmt := context.String(InFmtFlag.Names()[0])
 
 	var (
-		t   time.Time
+		t   time.Time = time.Now()
 		err error
 	)
-	if len(infmt) < 1 {
-		t, err = dateparse.ParseAny(src)
-		if err != nil {
-			return cli.Exit(errors.Wrap(err, "unable to parse date/time"), 1)
+
+	if len(src) > 0 {
+		if len(infmt) < 1 {
+			t, err = dateparse.ParseStrict(src)
+			if err != nil {
+				return cli.Exit(errors.Wrap(err, "unable to parse date/time"), 1)
+			}
+		} else {
+			t, err = time.Parse(dfmt.ConvertFormat(infmt), src)
+			if err != nil {
+				return cli.Exit(errors.Wrap(err, "unable to parse date/time"), 1)
+			}
 		}
 	}
 
