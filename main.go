@@ -29,8 +29,10 @@ var (
 
 func main() {
 	app := cli.App{
+		Name:      "timestamp",
 		Copyright: "Copyright © 2018",
 		Usage:     "Convert date / timestamps to various formats",
+		UsageText: "timestamp [options] [arguments...]",
 		Version:   version,
 		Flags:     []cli.Flag{OutFmtFlag, InFmtFlag},
 		Action:    do,
