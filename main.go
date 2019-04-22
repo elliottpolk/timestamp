@@ -34,7 +34,7 @@ func main() {
 		Usage:     "Convert date / timestamps to various formats",
 		UsageText: "timestamp [options] [arguments...]",
 		Version:   version,
-		Flags:     []cli.Flag{OutFmtFlag, InFmtFlag},
+		Flags:     []cli.Flag{InFmtFlag, OutFmtFlag},
 		Action:    do,
 	}
 
@@ -43,7 +43,7 @@ func main() {
 
 func do(context *cli.Context) error {
 	src := context.Args().First()
-	infmt := context.String(InFmtFlag.Names()[0])
+	infmt := context.String(InFmtFlag.Name)
 
 	var (
 		t   time.Time = time.Now()
@@ -64,7 +64,8 @@ func do(context *cli.Context) error {
 		}
 	}
 
-	outfmt := context.String(OutFmtFlag.Names()[0])
+	outfmt := context.String(OutFmtFlag.Name)
+
 	switch outfmt {
 	case "unix":
 		fmt.Println(t.Unix())
