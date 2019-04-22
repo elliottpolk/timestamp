@@ -70,6 +70,9 @@ func do(context *cli.Context) error {
 	case "unix":
 		fmt.Println(t.Unix())
 
+	case "unix.milli":
+		fmt.Println(t.Unix() * 1000)
+
 	case "unix.nano":
 		fmt.Println(t.UnixNano())
 
