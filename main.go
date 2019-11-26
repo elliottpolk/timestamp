@@ -8,7 +8,7 @@ import (
 	"github.com/araddon/dateparse"
 	"github.com/pkg/errors"
 	dfmt "github.com/vigneshuvi/GoDateFormat"
-	"gopkg.in/urfave/cli.v2"
+	"github.com/urfave/cli/v2"
 )
 
 var (
