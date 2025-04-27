@@ -41,7 +41,7 @@ install: ; $(info $(M) installing locally ...) 						@ ## install binary locally
 	@go get -v -u
 	@go build \
 		-ldflags "-X main.version=$(CLI_VERSION) -X main.compiled=$(COMPILED) -X main.githash=$(GIT_HASH)" \
-		-o $(GOPATH)/bin/$(BIN) ./main.go
+		-o $(HOME)/.local/bin/$(BIN) ./main.go
 .PHONY: help
 help:
 	@grep -E '^[ a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
